@@ -238,10 +238,10 @@
                 <small class="label pull-right bg-yellow">12</small>
               </a>
             </li>
-            <li class="header">监控系统</li>
+          <!--   <li class="header">监控系统</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -270,12 +270,12 @@
               <div class="small-box bg-aqua">
                 <div class="inner">
                   <h3>150</h3>
-                  <p>New Orders</p>
+                  <p>热词</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
@@ -283,12 +283,12 @@
               <div class="small-box bg-green">
                 <div class="inner">
                   <h3>53<sup style="font-size: 20px">%</sup></h3>
-                  <p>Bounce Rate</p>
+                  <p>专题</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
@@ -296,12 +296,12 @@
               <div class="small-box bg-yellow">
                 <div class="inner">
                   <h3>44</h3>
-                  <p>User Registrations</p>
+                  <p>领导人</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
@@ -309,12 +309,12 @@
               <div class="small-box bg-red">
                 <div class="inner">
                   <h3>65</h3>
-                  <p>Unique Visitors</p>
+                  <p>预警信息</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-pie-graph"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="#" class="small-box-footer">更多<i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
           </div><!-- /.row -->
@@ -323,20 +323,7 @@
             <!-- Left col -->
             <section class="col-lg-12 connectedSortable">
               <!-- Custom tabs (Charts with tabs)-->
-              <div class="nav-tabs-custom">
-                <!-- Tabs within a box -->
-                <ul class="nav nav-tabs pull-right">
-                  <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-                  <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-                  <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-                </ul>
-                <div class="tab-content no-padding">
-                  <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-                  <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-                </div>
-              </div><!-- /.nav-tabs-custom -->
-
+            
               <!-- Chat box -->
               <div class="box box-success">
                 <div class="box-header">
@@ -397,7 +384,125 @@
                 </div><!-- /.chat -->
               </div><!-- /.box (chat box) -->
 
-            
+               <!-- Chat box -->
+              <div class="box box-success">
+                <div class="box-header">
+                  <i class="fa fa-comments-o"></i>
+                  <h3 class="box-title">本周预警</h3>
+                 
+                </div>
+                <div class="box-body chat" id="chat-box">
+                  <div class="bs-example" data-example-id="simple-table">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>预警类型</th>
+                            <th>名称</th>
+                            <th>预警时间</th>
+                            <th>触发人</th>
+                            <th style="width:20%">详细内容</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>类型一</td>
+                            <td>强烈预警</td>
+                            <td>2015-12-12</td>
+                            <td>李艳军</td>
+                            <td>2015年12月12日，预警触发，指示如何处理</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>类型一</td>
+                            <td>强烈预警</td>
+                            <td>2015-12-12</td>
+                            <td>李艳军</td>
+                            <td>2015年12月12日，预警触发，指示如何处理</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>类型一</td>
+                            <td>强烈预警</td>
+                            <td>2015-12-12</td>
+                            <td>李艳军</td>
+                            <td>2015年12月12日，预警触发，指示如何处理</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>类型一</td>
+                            <td>强烈预警</td>
+                            <td>2015-12-12</td>
+                            <td>李艳军</td>
+                            <td>2015年12月12日，预警触发，指示如何处理</td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                </div><!-- /.chat -->
+              </div><!-- /.box (chat box) -->
+
+             <!-- Chat box -->
+              <div class="box box-success">
+                <div class="box-header">
+                  <i class="fa fa-comments-o"></i>
+                  <h3 class="box-title">历史预警</h3>
+                 
+                </div>
+                <div class="box-body chat" id="chat-box">
+                  <div class="bs-example" data-example-id="simple-table">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>预警类型</th>
+                            <th>名称</th>
+                            <th>预警时间</th>
+                            <th>触发人</th>
+                            <th style="width:20%">详细内容</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>类型一</td>
+                            <td>强烈预警</td>
+                            <td>2015-12-12</td>
+                            <td>李艳军</td>
+                            <td>2015年12月12日，预警触发，指示如何处理</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>类型一</td>
+                            <td>强烈预警</td>
+                            <td>2015-12-12</td>
+                            <td>李艳军</td>
+                            <td>2015年12月12日，预警触发，指示如何处理</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>类型一</td>
+                            <td>强烈预警</td>
+                            <td>2015-12-12</td>
+                            <td>李艳军</td>
+                            <td>2015年12月12日，预警触发，指示如何处理</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>类型一</td>
+                            <td>强烈预警</td>
+                            <td>2015-12-12</td>
+                            <td>李艳军</td>
+                            <td>2015年12月12日，预警触发，指示如何处理</td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </div>
+                </div><!-- /.chat -->
+              </div><!-- /.box (chat box) -->
 
               
 
