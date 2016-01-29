@@ -30,6 +30,10 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
+    <link rel="stylesheet" href="css/ui.jqgrid.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -42,7 +46,7 @@
 
       <header class="main-header">
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="index.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>控</b>制台</span>
           <!-- logo for regular state and mobile devices -->
@@ -201,7 +205,7 @@
                 <i class="fa fa-dashboard"></i> <span>预警</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> 今日预警</a></li>
+                <li class="active"><a href="indexToday.html"><i class="fa fa-circle-o"></i> 今日预警</a></li>
                 <li><a href="index2.html"><i class="fa fa-circle-o"></i> 本周预警</a></li>
                 <li><a href="index3.html"><i class="fa fa-circle-o"></i> 历史预警</a></li>
               </ul>
@@ -333,10 +337,10 @@
                 </div>
                 <div class="box-body chat" id="chat-box">
                   <div class="bs-example" data-example-id="simple-table">
-                      <table class="table">
+                      <table class="table" id="todayAlert">
                         <thead>
                           <tr>
-                            <th>#</th>
+                            <th>ID</th>
                             <th>预警类型</th>
                             <th>名称</th>
                             <th>预警时间</th>
@@ -344,7 +348,7 @@
                             <th style="width:20%">详细内容</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="todayAlertTbody">
                           <tr>
                             <th scope="row">1</th>
                             <td>类型一</td>
@@ -382,6 +386,16 @@
                       </table>
                     </div>
                 </div><!-- /.chat -->
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <nav>
+                      <ul class="pagination" style="float:right;margin-right:50px;" id="todayAlertPage">
+                        
+                     </ul>
+                   </nav>
+                  </div>
+                </div>
               </div><!-- /.box (chat box) -->
 
                <!-- Chat box -->
@@ -393,7 +407,7 @@
                 </div>
                 <div class="box-body chat" id="chat-box">
                   <div class="bs-example" data-example-id="simple-table">
-                      <table class="table">
+                      <table class="table" id="thisweekAlert">
                         <thead>
                           <tr>
                             <th>#</th>
@@ -404,7 +418,7 @@
                             <th style="width:20%">详细内容</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="thisweekAlertBody">
                           <tr>
                             <th scope="row">1</th>
                             <td>类型一</td>
@@ -453,7 +467,7 @@
                 </div>
                 <div class="box-body chat" id="chat-box">
                   <div class="bs-example" data-example-id="simple-table">
-                      <table class="table">
+                      <table class="table" id="historyAlert">
                         <thead>
                           <tr>
                             <th>#</th>
@@ -464,7 +478,7 @@
                             <th style="width:20%">详细内容</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="historyAlertBody">
                           <tr>
                             <th scope="row">1</th>
                             <td>类型一</td>
@@ -511,6 +525,7 @@
           </div><!-- /.row (main row) -->
 
         </section><!-- /.content -->
+        <div id="pager2"></div>
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
@@ -720,8 +735,12 @@
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="dist/js/pages/dashboard.js"></script>
+    <!-- // <script src="dist/js/pages/dashboard.js"></script> -->
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+
+    <script src="js/jquery.jqGrid.min.js"></script>
+    <!-- jq-grip.js -->
+    <script src="js/keyword.js"></script>
   </body>
 </html>

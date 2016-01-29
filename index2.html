@@ -20,6 +20,8 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 
+    <link rel="stylesheet" href="css/style.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -338,7 +340,7 @@
                 </div>
                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;"><div class="box-body chat" id="chat-box" style="overflow: hidden; width: auto; height: 250px;">
                   <div class="bs-example" data-example-id="simple-table">
-                      <table class="table">
+                      <table class="table" id="thisweekAlert">
                         <thead>
                           <tr>
                             <th>#</th>
@@ -349,7 +351,7 @@
                             <th style="width:20%">详细内容</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="thisweekAlertBody">
                           <tr>
                             <th scope="row">1</th>
                             <td>类型一</td>
@@ -587,5 +589,6 @@
     <script src="dist/js/pages/dashboard2.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+    <script src="js/keyword.js"></script>
   </body>
 </html>
