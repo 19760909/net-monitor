@@ -1,14 +1,5 @@
 
-/*body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    color: #888;
-    line-height: 30px;
-    text-align: center;
-}
 
-strong { font-weight: 500; }
 
 a, a:hover, a:focus {
 	color: #4aaf51;
@@ -81,7 +72,7 @@ img { max-width: 100%; }
 
 /***** Top content *****/
 
-/*.inner-bg {
+.inner-bg {
     padding: 100px 0 170px 0;
 }
 
@@ -163,11 +154,11 @@ img { max-width: 100%; }
 .social-login-buttons {
 	margin-top: 25px;
 }
-*/
+
 
 /***** Media queries *****/
 
-/*@media (min-width: 992px) and (max-width: 1199px) {}
+@media (min-width: 992px) and (max-width: 1199px) {}
 
 @media (min-width: 768px) and (max-width: 991px) {}
 
@@ -193,14 +184,10 @@ img { max-width: 100%; }
 }
 .backstretch img{
 	position: absolute; margin: 0px; padding: 0px; border: none; width: 1903px; height: 1268.67px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -179.333px;
-}*/
-
-#todayAlert thead tr th:last-child,#thisweekAlert thead tr th:last-child,#historyAlert thead tr th:last-child{
-	word-wrap:break-word;word-break:break-all;white-space:normal;
 }
-table tr th,table tr td{
+.loginHead{
 	text-align: center;
 }
-.content-header h1{
-	text-align: left;
-}
+.delbody .delTips{position: relative;padding-right: 1.5em}
+.delbody .delTips .close{position: absolute;right: 2px;top: -2px;}
+.addbody .addTips,.delbody .delTips{cursor: pointer;margin-right: 10px;}

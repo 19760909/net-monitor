@@ -1,5 +1,26 @@
 
+  // 添加热词
 
+$(function(){
+	var $addTips = $("#tipsPanel .addbody .addTips");
+	var $delbody = $("#tipsPanel .delbody");
+	var $delTips = $("#tipsPanel .delbody .delTips");
+	console.log($addTips);
+	$($addTips).siblings().click(function(event) {
+		$(this).clone().appendTo($delbody).addClass('delTips').removeClass('addTips').append('<span class="close" aria-label="Close"><span aria-hidden="true">&times;</span></span>');
+		$(this).hide();
+		$(this).parent(".addbody").siblings('.delbody').find('.close').on('click',  function(event) {
+			event.preventDefault();
+			console.log(1112);
+			$(this).parent(".delTips").remove();
+		});
+	});
+	// $($delTips).children(".close").on("click",function(){
+	// 	console.log(1112);
+	// 	$(this).parent(".delTips").remove();
+	// 	console.log(5566);
+	// });
+})
 // $(function(){
 //   pageInit();
 // });
@@ -43,6 +64,7 @@ function queryData(page){
 $.ajax({
 		url:"http://73.72.10.30:8100/rest/alerts",
 		// data:{page:page,pageSize:10},
+		data:{page:0,size:10},
 		dataType:"json",
 		type:"get",
 		success:function(data){
@@ -55,20 +77,86 @@ $.ajax({
 					var plan=innerData[i];
 					var dateTime=plan.logtime.date.year+"/"+plan.logtime.date.month+"/"+plan.logtime.date.day;
 					var dateBeyween=daysBetween(nowDate,dateTime);
-					console.log(nowDate);
-					console.log(dateTime);
-					console.log(dateBeyween);
+					var alarmTypes="";
+					var keyType=plan.types
+					if(keyType.length>0){
+						for(var j=0;j<keyType.length;j++){
+							var alarmTemp="";
+							if(keyType[j]=='KEYWORD'){
+								alarmTemp="关键词";
+							}
+							if(keyType[j]=='TOPIC'){
+								alarmTemp="专题";
+							}
+							if(keyType[j]=='LEADER'){
+								alarmTemp="领导人";
+							}
+
+							if(j==keyType.length-1){
+								alarmTypes+=alarmTemp;
+
+							}else{
+								alarmTypes+=alarmTemp+",";
+							}
+						}
+					}
+					var keyDetails="";
+					if(plan.keywords!=null&&plan.keywords.length>0){
+						var keyDetail="关键词：";
+						var temp="";
+						for(var j=0;j<plan.keywords.length;j++){
+							if(j==plan.keywords.length-1){
+								temp+=plan.keywords[j]+";";
+
+							}else{
+								temp+=plan.keywords[j]+",";
+							}
+
+
+						}
+						keyDetail+=temp;
+						keyDetails+=keyDetail;
+						
+					}
+					if(plan.topics!=null&&plan.topics.length>0){
+						var keyDetail="专题：";
+						var temp="";
+						for(var j=0;j<plan.topics.length;j++){
+							if(j==plan.topics.length-1){
+								temp+=plan.topics[j]+";";
+
+							}else{
+								temp+=plan.topics[j]+",";
+							}
+
+
+						}
+						keyDetail+=temp;
+						keyDetails+=keyDetail;
+						
+					}
+					if(plan.leaders!=null&&plan.leaders.length>0){
+						var keyDetail="专题：";
+						var temp="";
+						for(var j=0;j<plan.leaders.length;j++){
+							if(j==plan.leaders.length-1){
+								temp+=plan.leaders[j]+";";
+
+							}else{
+								temp+=plan.leaders[j]+",";
+							}
+						}
+						keyDetail+=temp;
+						keyDetails+=keyDetail;
+					}
+					
+
 					if (dateTime==nowDate) {
 						console.log(1);
 						innerHtmls.push("<tr>");
 						innerHtmls.push("<td>"+i+"</td>");
-						var alterType="热词";
-						// if(plan.topics!=null&&plan.topics.length>0){
-						// 	alterType="专题";
-						// }
-						
-						innerHtmls.push("<td>"+alterType+"</td>");
-						innerHtmls.push("<td>"+plan.keywords||paln.topics+"</td>");
+						innerHtmls.push("<td>"+alarmTypes+"</td>");
+						innerHtmls.push("<td>"+keyDetails+"</td>");
 						innerHtmls.push("<td>"+plan.logtime.date.year+"-"+plan.logtime.date.month+"-"+plan.logtime.date.day+" "+plan.logtime.time.hour+":"+plan.logtime.time.minute+":"+plan.logtime.time.second+"</td>");
 	                    innerHtmls.push("<td>"+plan.srcIp+"</td>");
 	                    innerHtmls.push("<td>"+plan.host+"</td>");
@@ -78,13 +166,8 @@ $.ajax({
 						console.log(2);
 						innerHtmls.push("<tr>");
 						innerHtmls.push("<td>"+i+"</td>");
-						var alterType="热词";
-						// if(plan.topics!=null&&plan.topics.length>0){
-						// 	alterType="专题";
-						// }
-						
-						innerHtmls.push("<td>"+alterType+"</td>");
-						innerHtmls.push("<td>"+plan.keywords||paln.topics+"</td>");
+						innerHtmls.push("<td>"+alarmTypes+"</td>");
+						innerHtmls.push("<td>"+keyDetails+"</td>");
 						innerHtmls.push("<td>"+plan.logtime.date.year+"-"+plan.logtime.date.month+"-"+plan.logtime.date.day+" "+plan.logtime.time.hour+":"+plan.logtime.time.minute+":"+plan.logtime.time.second+"</td>");
 	                    innerHtmls.push("<td>"+plan.srcIp+"</td>");
 	                    innerHtmls.push("<td>"+plan.host+"</td>");
@@ -94,13 +177,8 @@ $.ajax({
 						console.log(3);
 						innerHtmls.push("<tr>");
 						innerHtmls.push("<td>"+i+"</td>");
-						var alterType="热词";
-						// if(plan.topics!=null&&plan.topics.length>0){
-						// 	alterType="专题";
-						// }
-						
-						innerHtmls.push("<td>"+alterType+"</td>");
-						innerHtmls.push("<td>"+plan.keywords||paln.topics+"</td>");
+						innerHtmls.push("<td>"+alarmTypes+"</td>");
+						innerHtmls.push("<td>"+keyDetails+"</td>");
 						innerHtmls.push("<td>"+plan.logtime.date.year+"-"+plan.logtime.date.month+"-"+plan.logtime.date.day+" "+plan.logtime.time.hour+":"+plan.logtime.time.minute+":"+plan.logtime.time.second+"</td>");
 	                    innerHtmls.push("<td>"+plan.srcIp+"</td>");
 	                    innerHtmls.push("<td>"+plan.host+"</td>");
@@ -110,7 +188,7 @@ $.ajax({
 				}
 				
 			}
-			// getPageBar($("#todayAlertPage"),"queryData",data); 
+			pageding($("#todayAlertPage"),"queryData",data); 
 		} 
 	})
 }
@@ -178,7 +256,7 @@ function queryKeyData(page){
 	var type=$("#type").val();
 $.ajax({
 		url:"http://73.72.10.30:8100/rest/keywords",
-		data:{page:0,size:10},
+		// data:{page:0,size:10},
 		dataType:"json",
 		type:"get",
 		success:function(data){
@@ -221,31 +299,37 @@ $.ajax({
 				}
 				
 			}
-			getPageBar($("#todayAlertPage"),"queryKeyData",data); 
+			// getPageBar($("#todayAlertPage"),"queryKeyData",data); 
 		} 
 	})
 }
 
+// function paddingDay(pagearr,data){
+// pageding(pagearr,"paddingDay",data);
 
-function getPageBar(pagearr,fun_name,data){
+// }
+function pageding(pagearr,fun_name,data){
                         var html1=[];
-                        var totalPage =1;
-                        if(data.totaPage > 1){
-                            totalPage = data.pageTotal;
+                        var totalPage =0;
+                        if(data.data.pageTotal > 0){
+                            totalPage = data.data.pageTotal;
                         }
                         html1.push("<span>共有<b>"+totalPage+"</b>页</span> ");
-                        html1.push("<span>当前"+(data.pageNumber+1)+"/"+totalPage+"</span>");
-                        if(data.currentPage>1){
-                            var shang = data.pageNumber;
-                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"(1)'>首页</a>");
+                        html1.push("<span>当前"+data.data.pageNumber+"/"+totalPage+"</span>");
+                        if(data.data.pageNumber>0){
+                            var shang = data.data.pageNumber-1;
+                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"(0)'>首页</a>");
                             html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"("+shang+")'>上一页</a>");
                         }
-                        if((data.pageNumber+1)<data.totaPage){
-                            var xia = data.pageNumber+1;
-                            var mo =data.totaPage;
+                        if(data.data.pageNumber<data.data.pageTotal){
+                            var xia = data.data.pageNumber+1;
+                            var mo =data.data.pageTotal;
                             html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"("+xia+")'>下一页</a>");
-                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"("+mo+")'>末页</a>");    
+                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"("+mo+")'>末页</a>");
+                           
                         }
                         pagearr.html("");
                         pagearr.append(html1.join(""));
-        }   
+        } 
+
+
