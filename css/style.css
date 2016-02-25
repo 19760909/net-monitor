@@ -191,3 +191,6 @@ img { max-width: 100%; }
 .delbody .delTips{position: relative;padding-right: 1.5em}
 .delbody .delTips .close{position: absolute;right: 2px;top: -2px;}
 .addbody .addTips,.delbody .delTips{cursor: pointer;margin-right: 10px;}
+
+.form-bottom .btn-sub{display:block;height: 50px;margin: 0;padding: 0 20px;vertical-align: middle;background:#4aaf51;border:0;font-size: 26px;font-weight: 300;line-height: 50px;border-radius: 4px;text-align: center;cursor: pointer; }
+.form-bottom .btn-sub:hover{color: #fff;}
