@@ -12,6 +12,6 @@ function lost(){
 	yanzheng(window.sessionStorage.getItem("token"));
 	
 }
-setTimeout("lost()",10000);
+setTimeout("lost()",100000);
 
 
