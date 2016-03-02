@@ -1,26 +1,5 @@
 
-  // 添加热词
 
-$(function(){
-	var $addTips = $("#tipsPanel .addbody .addTips");
-	var $delbody = $("#tipsPanel .delbody");
-	var $delTips = $("#tipsPanel .delbody .delTips");
-	console.log($addTips);
-	$($addTips).siblings().click(function(event) {
-		$(this).clone().appendTo($delbody).addClass('delTips').removeClass('addTips').append('<span class="close" aria-label="Close"><span aria-hidden="true">&times;</span></span>');
-		$(this).hide();
-		$(this).parent(".addbody").siblings('.delbody').find('.close').on('click',  function(event) {
-			event.preventDefault();
-			console.log(1112);
-			$(this).parent(".delTips").remove();
-		});
-	});
-	// $($delTips).children(".close").on("click",function(){
-	// 	console.log(1112);
-	// 	$(this).parent(".delTips").remove();
-	// 	console.log(5566);
-	// });
-})
 // $(function(){
 //   pageInit();
 // });
@@ -74,7 +53,6 @@ $.ajax({
 					var plan=innerData[i];
 					var myDate=new Date();
 					var nowDate=myDate.toLocaleDateString();
-					var plan=innerData[i];
 					var dateTime=plan.logtime.date.year+"/"+plan.logtime.date.month+"/"+plan.logtime.date.day;
 					var dateBeyween=daysBetween(nowDate,dateTime);
 					var alarmTypes="";
