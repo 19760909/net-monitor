@@ -3,7 +3,6 @@ $(function(){
 	var $addTips = $("#tipsPanel .addbody .addTips");
 	var $delbody = $("#tipsPanel .delbody");
 	var $delTips = $("#tipsPanel .delbody .delTips");
-	console.log($addTips);
 	$($addTips).siblings().click(function(event) {
 		$(this).clone().appendTo($delbody).addClass('delTips').removeClass('addTips').append('<span class="close" aria-label="Close"><span aria-hidden="true">&times;</span></span>');
 		$(this).hide();
@@ -21,6 +20,7 @@ $(function(){
 	queryDataAlert1();
 	queryDataAlert2();
 	queryDataAlert3();
+	queryAlertWords();
 })
 
 // 今日预警
@@ -189,4 +189,58 @@ function queryDataAlert3(){
 	})
 }
 
-// 控制条数显示
+// 预警词列表
+function queryAlertWords(){
+	var hotKeywords=$('#hotKeywordsBody');
+	var innerHtmls=[];
+	$.ajax({
+		url:"http://73.72.10.30:8100/rest/keywords",
+		data:{},
+		dataType:"json",
+		type:"get",
+		success:function(data){
+			var innerData=data.data.rows;
+			if (innerData!=null&&innerData.length>0) {
+				for(var i=0;i<innerData.length;i++){
+					var plan=innerData[i];
+					var dataTags=plan.tags;
+					var dataWords=plan.words;
+					var alterTime=plan.createtime.date.year+"-"+plan.createtime.date.month+"-"+plan.createtime.date.day+"&nbsp;"+plan.createtime.time.hour+":"+plan.createtime.time.minute+plan.createtime.time.second;
+					var alertTags="";
+					var alertWords="";
+					if (dataTags!=null&&dataTags.length>0) {
+						
+						for(var j=0;j<dataTags.length;j++){
+							if (j==dataTags.length-1) {
+								alertTags+=dataTags[j];
+							}else{
+								alertTags+=dataTags[j]+",";
+							}
+						};
+					};
+					if (dataWords!=null&&dataWords.length>0) {
+						
+						for(var j=0;j<dataWords.length;j++){
+							if (j==dataWords.length-1) {
+								alertWords+=dataWords[j];
+							}else{
+								alertWords+=dataWords[j]+",";
+							}
+						};
+					};
+					innerHtmls.push("<tr>");
+					innerHtmls.push("<th scope='row'><input type='checkbox'></th>");
+					innerHtmls.push("<td>"+alertTags+"</td>");
+					innerHtmls.push("<td>"+alertWords+"</td>");
+					innerHtmls.push("<td>"+alterTime+"</td>");
+					innerHtmls.push("<td>"+plan.matched+"</td>");
+					innerHtmls.push("</tr>");
+					hotKeywords.html(innerHtmls.join(""));
+				}
+			}
+		}
+	})
+
+}
+
+

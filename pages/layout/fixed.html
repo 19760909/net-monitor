@@ -11,7 +11,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -184,12 +184,12 @@
         <section class="content">
           <div class="callout callout-info">
             <h4>预警词</h4>
-            <p>预警词示例，预警词示例，预警词示例，预警词示例，预警词示例。</p>
+            <p>中国、文献、财务、标准</p>
           </div>
           <!-- Default box -->
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">热词</h3>
+              <h3 class="box-title">预警词列表</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
                 <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
@@ -225,8 +225,8 @@
                       </form>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary">保存</button>
+                        <a type="button" class="btn btn-default" data-dismiss="modal">关闭</a>
+                        <a type="button" class="btn btn-primary" id="alertSave">保存</a>
                       </div>
                     </div>
                   </div>
@@ -240,8 +240,8 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>预警词</th>
                             <th>标签</th>
+                            <th>预警词</th>
                             <th>添加时间</th>
                             <th>预警次数</th>
                           </tr>
@@ -489,7 +489,35 @@
     <!-- AdminLTE for demo purposes -->
     <script src="../../dist/js/demo.js"></script>
     <script src="../../js/user.js"></script>
-    <script src="../../js/keyword.js"></script>
     <script src="../../js/usersub.js"></script>
+    <script src="../../js/page.js"></script>
+     <!-- 保存添加预警信息 -->
+    <script type="text/javascript">
+    function currentTime(){
+    var d = new Date(),str = '';
+     str += d.getFullYear()+'-';
+     str  += d.getMonth() + 1+'-';
+     str  += d.getDate()+' ';
+     str += d.getHours()+':'; 
+     str  += d.getMinutes()+':'; 
+    str+= d.getSeconds()+':'; 
+    return str;
+    } 
+    
+    $(function(){
+      $('#alertSave').on("click",function(event) {
+        var alertTag=$('#inputalertTxt').val();
+        var tisMsg=$('#inputlabel').val();
+        var d = new Date(),str = '';
+         str += d.getFullYear()+'-';
+         str  += d.getMonth() + 1+'-';
+         str  += d.getDate()+' ';
+         str += d.getHours()+':'; 
+         str  += d.getMinutes()+':'; 
+        str+= d.getSeconds()+''; 
+        $('#hotKeywordsBody').append("<tr><th scope='row'> <input type='checkbox'></th><td>"+tisMsg+"</td><td>"+alertTag+"</td><td>"+str+"</td><td>14568</td></tr>");
+      });
+    })
+    </script>
   </body>
 </html>
