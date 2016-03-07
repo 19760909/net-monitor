@@ -9,9 +9,9 @@
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
     <!-- jvectormap -->
     <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
     <!-- Theme style -->
@@ -180,8 +180,8 @@
           <!-- Info boxes -->
            <div class="panel panel-default" id="tipsPanel">
                 <div class="panel-body">
-                  <p class="delbody">按标签删选：<span class="delTips label label-info">领导人<span class="close" aria-label="Close"><span aria-hidden="true">&times;</span></span></span></p>
-                  <p class="addbody">标签热词： <span class="addTips label label-info">领导人</span> <span class="addTips label label-info">WIFI开通</span> <span class="addTips label label-info">上海女</span> <span class="addTips label label-info">自杀</span></p>
+                  <p class="delbody" id="delbody">按标签删选：</p>
+                  <p class="addbody" id="addbody">标签热词： <span class="addTips label label-info "><span class="txt">专题</span></span> <span class="addTips label label-info"><span class="txt">网费</span></span> <span class="addTips label label-info"><span class="txt">领导人</span></span> <span class="addTips label label-info"><span class="txt">香港</span></span></p>
                 </div>
               </div>
 
@@ -190,7 +190,7 @@
                   <i class="fa fa-comments-o"></i>
                   <h3 class="box-title">历史预警</h3>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-md-12">
                     <form class="form-inline">
                       <div class="form-group">
@@ -204,7 +204,7 @@
                       <button type="submit" class="btn btn-default" style="display:inlie-block;margin-left:40px;margin-right:20px;">查看</button>
                     </form>
                   </div>
-                </div>
+                </div> -->
                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;"><div class="box-body chat" id="chat-box" style="overflow: hidden; width: auto; ">
                   <div class="bs-example" data-example-id="simple-table">
                       <table class="table" id="historyAlert">
@@ -255,7 +255,15 @@
                         </tbody>
                       </table>
                     </div>
-                </div><div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 250px; background: rgb(0, 0, 0);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div><!-- /.chat -->
+                </div></div><!-- /.chat -->
+                <div class="row">
+                      <div class="col-md-12">
+                        <nav>
+                          <ul class="pagination" style="float:right;margin-right:50px;" id="historyAlertPage">
+                         </ul>
+                       </nav>
+                      </div>
+                    </div>
               </div>
           <!-- Main row -->
         </section><!-- /.content -->

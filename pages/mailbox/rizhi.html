@@ -9,15 +9,16 @@
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
     <!-- Theme style -->
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
     <script src="../../js/token2.js"></script>
+    <script src="../../My97DatePicker/WdatePicker.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -194,22 +195,22 @@
             
               <form class="form-horizontal">
                   <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">开始时间</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label" >开始时间</label>
                     <div class="col-sm-2">
-                      <input type="email" class="form-control" id="inputEmail3" placeholder="请输入开始时间">
+                      <input type="text" class="form-control" id="inputTimebegin" placeholder="请输入开始时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
                     </div>
                     <label for="inputEmail3" class="col-sm-2 control-label">结束时间</label>
                     <div class="col-sm-2">
-                      <input type="email" class="form-control" id="inputEmail3" placeholder="请输入结束时间">
+                      <input type="text" class="form-control" id="inputTimeend" placeholder="请输入结束时间" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
                     </div>
                     <div class="col-sm-2">
-                      <button type="submit" class="btn btn-primary">查看</button>
+                      <a  class="btn btn-primary" id="show">查看</a>
                     </div>
                   </div>
                   <div class="form-group">
                       <label for="inputEmail3" class="col-sm-2 control-label">日志</label>
                       <div class="col-sm-6">
-                        <textarea class="form-control" style="min-height:300px;"></textarea>
+                        <textarea class="form-control" style="min-height:300px;" id="log"></textarea>
                       </div>
                     </div>
                     <div class="form-group">
@@ -416,5 +417,6 @@
     <script src="../../dist/js/demo.js"></script>
     <script src="../../js/user.js"></script>
     <script src="../../js/usersub.js"></script>
+    <script src="../../js/page.js"></script>
   </body>
 </html>
