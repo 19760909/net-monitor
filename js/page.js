@@ -89,6 +89,7 @@ function queryDataAlert1(page){
 	var tagTxts=$("#delbody .delTips .txt").text();
 	var tagTxt=$("#delbody .delTips .txt")
 	var tags="";
+	var ii = layer.load();
 	tagTxt.each(function(index){
 		if (index==tagTxt.length-1) {
 			tags+=$(this).text();
@@ -108,7 +109,7 @@ function queryDataAlert1(page){
 					var plan=innerData[i];
 					var dataTags=plan.tags;
 					var dataWords=plan.words;
-					var alterTime=plan.logtime.date.year+"-"+plan.logtime.date.month+"-"+plan.logtime.date.day+"&nbsp;"+plan.logtime.time.hour+":"+plan.logtime.time.minute+plan.logtime.time.second;
+					var alterTime=plan.logtime.date.year+"-"+plan.logtime.date.month+"-"+plan.logtime.date.day+"&nbsp;"+plan.logtime.time.hour+":"+plan.logtime.time.minute+":"+plan.logtime.time.second;
 					if (dataTags!=null&&dataTags.length>0) {
 						var alertTags="";
 						for(var j=0;j<dataTags.length;j++){
@@ -141,6 +142,7 @@ function queryDataAlert1(page){
 				};
 			}
 			pageding($("#todayAlertPage"),"queryDataAlert1",data);
+			layer.close(ii);
 		}
 	})
 }
@@ -157,6 +159,7 @@ function queryDataAlert2(page){
 	var tagTxts=$("#delbody .delTips .txt").text();
 	var tagTxt=$("#delbody .delTips .txt")
 	var tags="";
+	var ii = layer.load();
 	tagTxt.each(function(index){
 		if (index==tagTxt.length-1) {
 			tags+=$(this).text();
@@ -176,7 +179,7 @@ function queryDataAlert2(page){
 					var plan=innerData[i];
 					var dataTags=plan.tags;
 					var dataWords=plan.words;
-					var alterTime=plan.logtime.date.year+"-"+plan.logtime.date.month+"-"+plan.logtime.date.day+"&nbsp;"+plan.logtime.time.hour+":"+plan.logtime.time.minute+plan.logtime.time.second;
+					var alterTime=plan.logtime.date.year+"-"+plan.logtime.date.month+"-"+plan.logtime.date.day+"&nbsp;"+plan.logtime.time.hour+":"+plan.logtime.time.minute+":"+plan.logtime.time.second;
 					if (dataTags!=null&&dataTags.length>0) {
 						var alertTags="";
 						for(var j=0;j<dataTags.length;j++){
@@ -209,6 +212,7 @@ function queryDataAlert2(page){
 				};
 			}
 			pageding($("#weekAlertPage"),"queryDataAlert2",data);
+			layer.close(ii);
 		}
 	})
 }
@@ -228,6 +232,7 @@ function queryDataAlert3(page){
 			tags+=$(this).text()+",";
 		}
 	});
+	var ii = layer.load();
 	$.ajax({
 		url:"http://73.72.10.30:8100/rest/alerts/byTime?period="+period+"&tags="+tags+"&page="+page+"&size=20",
 		// data:{page:0,size:10},
@@ -240,7 +245,7 @@ function queryDataAlert3(page){
 					var plan=innerData[i];
 					var dataTags=plan.tags;
 					var dataWords=plan.words;
-					var alterTime=plan.logtime.date.year+"-"+plan.logtime.date.month+"-"+plan.logtime.date.day+"&nbsp;"+plan.logtime.time.hour+":"+plan.logtime.time.minute+plan.logtime.time.second;
+					var alterTime=plan.logtime.date.year+"-"+plan.logtime.date.month+"-"+plan.logtime.date.day+"&nbsp;"+plan.logtime.time.hour+":"+plan.logtime.time.minute+":"+plan.logtime.time.second;
 					if (dataTags!=null&&dataTags.length>0) {
 						var alertTags="";
 						for(var j=0;j<dataTags.length;j++){
@@ -273,6 +278,7 @@ function queryDataAlert3(page){
 				};
 			}
 			pageding($("#historyAlertPage"),"queryDataAlert3",data);
+			layer.close(ii);
 		}
 	})
 }
@@ -281,6 +287,7 @@ function queryDataAlert3(page){
 function queryAlertWords(page){
 	var hotKeywords=$('#hotKeywordsBody');
 	var innerHtmls=[];
+	var ii = layer.load();
 	$.ajax({
 		url:"http://73.72.10.30:8100/rest/keywords?page="+page+"&size=20",
 		// data:{page:page,size:size},
@@ -293,7 +300,7 @@ function queryAlertWords(page){
 					var plan=innerData[i];
 					var dataTags=plan.tags;
 					var dataWords=plan.words;
-					var alterTime=plan.createtime.date.year+"-"+plan.createtime.date.month+"-"+plan.createtime.date.day+"&nbsp;"+plan.createtime.time.hour+":"+plan.createtime.time.minute+plan.createtime.time.second;
+					var alterTime=plan.createtime.date.year+"-"+plan.createtime.date.month+"-"+plan.createtime.date.day+"&nbsp;"+plan.createtime.time.hour+":"+plan.createtime.time.minute+":"+plan.createtime.time.second;
 					var alertTags="";
 					var alertWords="";
 					if (dataTags!=null&&dataTags.length>0) {
@@ -327,6 +334,7 @@ function queryAlertWords(page){
 				}
 			}
 			pageding($("#AlertPage"),"queryAlertWords",data);
+			layer.close(ii);
 		}
 	})
 
