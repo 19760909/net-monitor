@@ -14,17 +14,86 @@ $(function(){
 			};
 		});
 		if(i!=1){
-		$(this).clone().addClass('delTips').removeClass('addTips').append('<span class="close" aria-label="Close"><span aria-hidden="true">&times;</span></span>').appendTo(delbody);
-		selData();
+			$(this).clone().addClass('delTips').removeClass('addTips').append('<span class="close" aria-label="Close"><span aria-hidden="true">&times;</span></span>').appendTo(delbody);
+			if(period="today"){
+				queryDataAlert1(0);
+			}
+			if(period="week"){
+				queryDataAlert2(0);
+			}
+			if(period="history"){
+				queryDataAlert3(0);
+			}
+		
 		}
 		$(this).parent(".addbody").siblings('.delbody').find('.close').click(function(event) {
 			$(this).parent(".delTips").detach();
-			selData();
+			if(period="today"){
+				queryDataAlert1(0);
+			}
+			if(period="week"){
+				queryDataAlert2(0);
+			}
+			if(period="history"){
+				queryDataAlert3(0);
+			}
 		});
 	})
 })
 
-function selData(){
+// function selData(){
+// 	var tagTxts=$("#delbody .delTips .txt").text();
+// 	var tagTxt=$("#delbody .delTips .txt")
+// 	var tags="";
+// 	tagTxt.each(function(index){
+// 		if (index==tagTxt.length-1) {
+// 			tags+=$(this).text();
+// 		}else{
+// 			tags+=$(this).text()+",";
+// 		}
+// 	});
+// 	// for(var i=0;i<tagTxt.length;i++){
+// 	// 	if (i==tagTxt.length-1) {
+// 	// 		tags+=tagTxt[i];
+// 	// 	}else{
+// 	// 		tags+=tagTxt[i]+",";
+// 	// 		console.log(tags);
+// 	// 	}
+// 	// };
+
+// }
+
+//+---------------------------------------------------
+//| 求两个时间的天数差 日期格式为 YYYY-MM-dd
+//+---------------------------------------------------
+function daysBetween(DateOne,DateTwo)
+{
+var OneMonth = DateOne.substring(5,DateOne.lastIndexOf ('/'));
+var OneDay = DateOne.substring(DateOne.length,DateOne.lastIndexOf ('/')+1);
+var OneYear = DateOne.substring(0,DateOne.indexOf ('/'));
+
+var TwoMonth = DateTwo.substring(5,DateTwo.lastIndexOf ('/'));
+var TwoDay = DateTwo.substring(DateTwo.length,DateTwo.lastIndexOf ('/')+1);
+var TwoYear = DateTwo.substring(0,DateTwo.indexOf ('/'));
+
+var cha=((Date.parse(OneMonth+'/'+OneDay+'/'+OneYear)- Date.parse(TwoMonth+'/'+TwoDay+'/'+TwoYear))/86400000);
+return Math.abs(cha);
+}
+
+$(function(){
+	queryDataAlert1();
+	queryDataAlert2();
+	queryDataAlert3();
+	queryAlertWords();
+})
+
+// 今日预警
+function queryDataAlert1(page){
+	var tbody=$("#todayAlertTbody");
+	var thisweek=$("#thisweekAlertBody");
+	var history=$("#historyAlertBody");
+	var innerHtmls=[];
+	var period="today";
 	var tagTxts=$("#delbody .delTips .txt").text();
 	var tagTxt=$("#delbody .delTips .txt")
 	var tags="";
@@ -35,41 +104,8 @@ function selData(){
 			tags+=$(this).text()+",";
 		}
 	});
-	// for(var i=0;i<tagTxt.length;i++){
-	// 	if (i==tagTxt.length-1) {
-	// 		tags+=tagTxt[i];
-	// 	}else{
-	// 		tags+=tagTxt[i]+",";
-	// 		console.log(tags);
-	// 	}
-	// };
 	$.ajax({
-		url:"http://73.72.10.30:8100/rest/alerts/byTags/"+tags,
-		dataType:"json",
-		type:"get",
-		success:function(data){
-			// queryDataAlert3();
-		}
-	})
-}
-
-$(function(){
-	queryDataAlert1();
-	queryDataAlert2();
-	queryDataAlert3();
-	queryAlertWords();
-	showLog();
-})
-
-// 今日预警
-function queryDataAlert1(page){
-	var tbody=$("#todayAlertTbody");
-	var thisweek=$("#thisweekAlertBody");
-	var history=$("#historyAlertBody");
-	var innerHtmls=[];
-	var period="today";
-	$.ajax({
-		url:"http://73.72.10.30:8100/rest/alerts/byTime?period="+period+"&page="+page+"&size=20",
+		url:"http://73.72.10.30:8100/rest/alerts/byTime?period="+period+"&tags="+tags+"&page="+page+"&size=20",
 		// data:{page:0,size:10},
 		dataType:"json",
 		type:"get",
@@ -117,6 +153,8 @@ function queryDataAlert1(page){
 	})
 }
 
+
+
 // 本周预警
 function queryDataAlert2(page){
 	var tbody=$("#todayAlertTbody");
@@ -124,9 +162,19 @@ function queryDataAlert2(page){
 	var history=$("#historyAlertBody");
 	var innerHtmls=[];
 	var period="week";
+	var tagTxts=$("#delbody .delTips .txt").text();
+	var tagTxt=$("#delbody .delTips .txt")
+	var tags="";
+	tagTxt.each(function(index){
+		if (index==tagTxt.length-1) {
+			tags+=$(this).text();
+		}else{
+			tags+=$(this).text()+",";
+		}
+	});
 	$.ajax({
-		url:"http://73.72.10.30:8100/rest/alerts/byTime?period="+period+"&page="+page+"&size=20",
-		data:{page:0,size:10},
+		url:"http://73.72.10.30:8100/rest/alerts/byTime?period="+period+"&tags="+tags+"&page="+page+"&size=20",
+		// data:{page:0,size:10},
 		dataType:"json",
 		type:"get",
 		success:function(data){
@@ -178,8 +226,18 @@ function queryDataAlert3(page){
 	var history=$("#historyAlertBody");
 	var innerHtmls=[];
 	var period="history";
+	var tagTxts=$("#delbody .delTips .txt").text();
+	var tagTxt=$("#delbody .delTips .txt")
+	var tags="";
+	tagTxt.each(function(index){
+		if (index==tagTxt.length-1) {
+			tags+=$(this).text();
+		}else{
+			tags+=$(this).text()+",";
+		}
+	});
 	$.ajax({
-		url:"http://73.72.10.30:8100/rest/alerts/byTime?period="+period+"&page="+page+"&size=20",
+		url:"http://73.72.10.30:8100/rest/alerts/byTime?period="+period+"&tags="+tags+"&page="+page+"&size=20",
 		// data:{page:0,size:10},
 		dataType:"json",
 		type:"get",
@@ -231,7 +289,6 @@ function queryDataAlert3(page){
 function queryAlertWords(page){
 	var hotKeywords=$('#hotKeywordsBody');
 	var innerHtmls=[];
-	
 	$.ajax({
 		url:"http://73.72.10.30:8100/rest/keywords?page="+page+"&size=20",
 		// data:{page:page,size:size},
@@ -298,17 +355,6 @@ function queryAlertWords(page){
     
     $(function(){
       $('#alertSave').on("click",function(event) {
-        // var alertTag=$('#inputalertTxt').val();
-        // var tisMsg=$('#inputlabel').val();
-        // var d = new Date(),str = '';
-        //  str += d.getFullYear()+'-';
-        //  str  += d.getMonth() + 1+'-';
-        //  str  += d.getDate()+' ';
-        //  str += d.getHours()+':'; 
-        //  str  += d.getMinutes()+':'; 
-        //  str+= d.getSeconds()+'';
-        // $('#hotKeywordsBody').append("<tr><th scope='row'> <input type='checkbox'></th><td>"+tisMsg+"</td><td>"+alertTag+"</td><td>"+str+"</td><td>0</td></tr>");
-        // $(this).prop('data-dismiss',modal);
         var alertTag=$('#inputalertTxt').val();
         var tisMsg=$('#inputlabel').val();
         var token=window.sessionStorage.getItem("token");
@@ -343,6 +389,7 @@ function queryAlertWords(page){
         var len=$('#hotKeywordsBody').find('input:checked').length;
         var checkedVal=$('#hotKeywordsBody').find('input:checked');
         if (len>0) {
+        	$(this).attr('data-toggle','modal');
         	  $('#hotKeywordsBody').find('input:checked').each(function(index) {
 	         	if (index==$('#hotKeywordsBody').find('input:checked').length-1) {
 	         		id+=$(this).val();
@@ -363,51 +410,33 @@ function queryAlertWords(page){
         	  })
         	}else{
         		alert("请选择标签");
+        		
         	};
         	
         })
       })
 
-
+// 翻页控件
      function pageding(pagearr,fun_name,data){
                         var html1=[];
                         var totalPage =0;
                         if(data.data.pageTotal > 0){
                             totalPage = data.data.pageTotal-1;
                         }
-                        html1.push("<span>共有<b>"+totalPage+"</b>页</span> ");
-                        html1.push("<span>当前"+data.data.pageNumber+"/"+totalPage+"</span>");
+                        html1.push("<span class='total'>共有<b>"+totalPage+"</b>页</span> ");
+                        html1.push("<span class='page'>当前"+data.data.pageNumber+"/"+totalPage+"</span>");
                         if(data.data.pageNumber>0){
                             var shang = data.data.pageNumber-1;
-                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"(0)'>首页</a>");
-                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"("+shang+")'>上一页</a>");
+                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"(0)' class='pages'>首页</a>");
+                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"("+shang+")' class='pages'>上一页</a>");
                         }
                         if(data.data.pageNumber<data.data.pageTotal-1){
                             var xia = data.data.pageNumber+1;
                             var mo =data.data.pageTotal-1;
-                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"("+xia+")'>下一页</a>");
-                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"("+mo+")'>末页</a>");
+                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"("+xia+")' class='pages'>下一页</a>");
+                            html1.push("<a href='javascript:void(0)' onclick='"+fun_name+"("+mo+")' class='pages'>末页</a>");
                         }
                         pagearr.html("");
                         pagearr.append(html1.join(""));
         } 
 
-
-// 查看日志
-
-function showLog(){
-	$('#show').click(function(){
-		var Timebegin=$('#inputTimebegin').val();
-		var Timeend=$('#inputTimeend').val();
-		console.log(Timebegin);
-		console.log(Timeend);
-		$.ajax({
-			url:"http://73.72.10.30:8100/rest/logfiles",
-			dataType:"json",
-			type:"get",
-			success:function(){
-				
-			}
-		})
-	})
-}

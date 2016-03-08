@@ -194,3 +194,11 @@ img { max-width: 100%; }
 
 .form-bottom .btn-sub{display:block;height: 50px;margin: 0;padding: 0 20px;vertical-align: middle;background:#4aaf51;border:0;font-size: 26px;font-weight: 300;line-height: 50px;border-radius: 4px;text-align: center;cursor: pointer; }
 .form-bottom .btn-sub:hover{color: #fff;}
+
+
+#historyAlertPage .total,#historyAlertPage .page,#historyAlertPage .pages,#AlertPage .total,#AlertPage .page,#AlertPage .pages,#weekAlertPage .total,#weekAlertPage .page,#weekAlertPage .pages,#todayAlertPage .total,#todayAlertPage .page,#todayAlertPage .pages{padding: 5px;}
+#historyAlertPage .pages,#AlertPage .pages,#weekAlertPage .pages,#todayAlertPage .pages{border:1px solid #ddd;margin-left:10px;display: inline-block;padding: 2px 10px;color: #999}
+#historyAlertPage .pages:visited,#historyAlertPage .pages:hover,#historyAlertPage .pages:active,#historyAlertPage .pages:focus,
+#AlertPage .pages:visited,#AlertPage .pages:hover,#AlertPage .pages:active,#AlertPage .pages:focus,
+#weekAlertPage .pages:visited,#weekAlertPage .pages:hover,#weekAlertPage .pages:active,#weekAlertPage .pages:focus,
+#todayAlertPage .pages:visited,#todayAlertPage .pages:hover,#todayAlertPage .pages:active,#todayAlertPage .pages:focus{background: #00C0EF;color: #fff;}

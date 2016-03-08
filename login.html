@@ -102,13 +102,21 @@ if(data.code=="0"){
     }
     window.location.href="index.html?token="+token;
 
-}else{
-alert(data.message);
+}else if(data.code=="1011"){
+    alert(data.message);
+// alert(data.message);
 
+}else if(data.code=="1013"){
+    alert(data.message);
+}else if(data.code=="1014"){
+    alert(data.message);
+}else{
+    alert(data.message);
 }
 },
 error: function(e) {
-alert(JSON.stringify(e));
+// alert(JSON.stringify(e));
+
 } 
 
 });
