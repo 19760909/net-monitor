@@ -1,6 +1,5 @@
 // 预警标签操作js
 $(function(){
-	
 	var addbody = $("#addbody");
 	var addTips = $("#addbody .addTips");
 	var delbody = $("#delbody");
@@ -79,13 +78,6 @@ var TwoYear = DateTwo.substring(0,DateTwo.indexOf ('/'));
 var cha=((Date.parse(OneMonth+'/'+OneDay+'/'+OneYear)- Date.parse(TwoMonth+'/'+TwoDay+'/'+TwoYear))/86400000);
 return Math.abs(cha);
 }
-
-$(function(){
-	queryDataAlert1();
-	queryDataAlert2();
-	queryDataAlert3();
-	queryAlertWords();
-})
 
 // 今日预警
 function queryDataAlert1(page){
@@ -358,26 +350,33 @@ function queryAlertWords(page){
         var alertTag=$('#inputalertTxt').val();
         var tisMsg=$('#inputlabel').val();
         var token=window.sessionStorage.getItem("token");
-        $.ajax({
-         url:"http://73.72.10.30:8100/rest/keywords?token="+token,
-         contentType:"application/json",
-          data:JSON.stringify({ 
-          	 name: "TEST",
-			  words: [
-			    alertTag 
-			  ],
-			  tags: [
-			    tisMsg 
-			  ]
-			  }),
-          dataType:"json",
-          type:"POST",
-          success:function(data){
-          	// alert(JSON.stringify(data));
-           window.location.reload();
-          }
-        })
-
+        if (alertTag!=''&&tisMsg!='') {
+        	$(this).attr('data-dismiss','modal');
+        	$('#inputalertTxt').css("color","#000");
+        	$('#inputlabel').css("color","#000");
+        	 $.ajax({
+		         url:"http://73.72.10.30:8100/rest/keywords?token="+token,
+		         contentType:"application/json",
+		          data:JSON.stringify({ 
+		          	 name: "TEST",
+					  words: [
+					    alertTag 
+					  ],
+					  tags: [
+					    tisMsg 
+					  ]
+					  }),
+		          dataType:"json",
+		          type:"POST",
+		          success:function(data){
+		          	// alert(JSON.stringify(data));
+		           window.location.reload();
+		          }
+		        })
+        }else{
+        	$('#inputalertTxt').val("请输入预警词").css("color","red");
+        	$('#inputlabel').val("请输入标签").css("color","red");
+        }
       });
     })
 
